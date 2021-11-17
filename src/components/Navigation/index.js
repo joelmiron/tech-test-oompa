@@ -1,5 +1,5 @@
 import { Redirect, Switch } from "react-router";
-import { Route, Link, Router, BrowserRouter } from "react-router-dom";
+import { Route, Link, BrowserRouter } from "react-router-dom";
 
 const Navigation = () => {
   return (
@@ -9,10 +9,8 @@ const Navigation = () => {
         <Link to="/detail"></Link>
 
         <Switch>
-          <Route exact path="/">
-            home
-          </Route>
-          <Route path="/detail">detail</Route>
+          <Route exact path="/"> </Route>
+          <Route path="/detail"> </Route>
           <Redirect to="/" />
         </Switch>
       </BrowserRouter>
