@@ -1,4 +1,4 @@
-import iconSearch from "assets/ic_search.png"
+import iconSearch from "assets/img/ic_search.png"
 
 const SearchBar= ({value, searchValue}) =>{
 

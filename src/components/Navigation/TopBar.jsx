@@ -1,4 +1,4 @@
-import logoLoompa from "assets/logo-loompa.png"
+import logoLoompa from "assets/img/logo-loompa.png"
 
 
 const TopBar = () =>{

@@ -1,5 +1,7 @@
 
 
+
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -74,7 +76,7 @@ justify-content: flex-end;
 }
 
 .searchBar{
-  padding: 20px 120px 0 120px;
+  padding: 20px  0 0 0;
 }
 
 

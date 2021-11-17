@@ -1,0 +1,58 @@
+
+//$colorGrey:  #dedede;
+
+.MainContainer {
+  padding: 0 120px;
+}
+
+.titleMain{
+  text-align: center;
+  display: inline-block;
+  padding: 20px 0 40px 0;
+  line-height: 1.4;
+  
+  .title {
+    font-size: 45px;
+  }
+
+  .subTitle {
+    font-size: 30px;
+    color: #939393;
+  }
+}
+
+
+.oompaLoompasContainer{
+   flex-wrap: wrap;
+   gap: 30px  20px; 
+   display: flex;
+justify-content: space-between;
+div{
+  flex:  1 0 30%;
+}
+
+}
+
+.oompaLoompaContent{
+   text-align: left;
+   line-height: 22px;
+   cursor: pointer;
+   img{
+      width: 100%;
+      padding-bottom: 20px;
+      
+   }
+
+.name{
+font-weight: bold;
+font-size: 18px;
+}
+.gender{
+color: #b9b9b9;;
+}
+.profession{
+   color: #b9b9b9;
+   font-style: italic;
+}
+}
+

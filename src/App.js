@@ -2,6 +2,8 @@ import MainView from 'components/MainView';
 import Navigation from 'components/Navigation';
 import TopBar from 'components/Navigation/TopBar';
 import './App.css';
+import 'scss/MainPage.scss'
+
 
 function App() {
   return (
