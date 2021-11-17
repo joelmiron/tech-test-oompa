@@ -6,29 +6,56 @@ import OompaLoompaMain from "./components/OompaLoompaMain";
 const axios = require("axios");
 
 const MainView = () => {
+
+
   const [page, setPage] = useState(1);
   const [oompas, setOompas] = useState([]);
-  const [value, setValue] = useState("");
+  const [oompasToFilter, setOompasToFilter] = useState([]);
+  const [search, setSearch] = useState("ei");
 
   useEffect(() => {
     getOompas();
+
   }, []);
+
+
 
   const getOompas = async () => {
     try {
       const response = await axios.get(API + page);
       setOompas(response.data.results);
-      console.log(response.data.results);
+      setOompasToFilter(response.data.results);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const searchValue = () => {};
+  const searchValue = (e) => {
+let searchBar = (e.target.value)
+    setSearch(searchBar)
+loompaSearch(searchBar)
+
+
+  };
+
+
+   const loompaSearch  = (searchBar) =>{
+
+ var loompaResult  =   oompasToFilter.filter(loompa => {
+   if(loompa.first_name.toString().toLowerCase().includes(searchBar.toLowerCase()) ||
+  loompa.last_name.toString().toLowerCase().includes(searchBar.toLowerCase()) ||
+   loompa.profession.toString().toLowerCase().includes(searchBar.toLowerCase())
+   ){
+     return loompa
+   }
+  })
+
+  setOompas(loompaResult)
+}
 
   return (
     <div className="MainContainer">
-      <SearchBar value={value} searchValue={searchValue} />
+      <SearchBar search={search} searchValue={searchValue} />
 
       <div className="titleMain">
         <div className="title">Find your Oompa Loompa</div>
@@ -36,9 +63,12 @@ const MainView = () => {
       </div>
 
       <div className="oompaLoompasContainer">
+      
         {oompas &&
           oompas.map((oompa) => (
-            <OompaLoompaMain
+            
+            <OompaLoompaMain 
+              key={oompa.id}
               id={oompa.id}
               image={oompa.image}
               firstName={oompa.first_name}
@@ -46,6 +76,7 @@ const MainView = () => {
               gender={oompa.gender}
               profession={oompa.profession}
             />
+              
           ))}
       </div>
     </div>

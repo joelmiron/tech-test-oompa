@@ -1,6 +1,6 @@
 import iconSearch from "assets/img/ic_search.png"
 
-const SearchBar= ({value, searchValue}) =>{
+const SearchBar= ({search, searchValue}) =>{
 
 
   return(<div className="searchContainer">    
@@ -9,7 +9,7 @@ const SearchBar= ({value, searchValue}) =>{
     
     <div className="inputContainer"><input
     placeholder="Search"
-value={value}
+value={search}
 onChange={searchValue}
 
 />
