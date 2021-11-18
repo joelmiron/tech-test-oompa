@@ -1,37 +1,45 @@
-import { useEffect, useRef,useState } from "react";
+import { useEffect,useState,useRef } from "react";
 
 
 
 const OompaLoompaMain = ({ id, image, firstName, lastName,gender,profession}) =>{
-const [showImage,setShowImage] = useState(false)
+
+  //const [showImage,setShowImage] = useState(false)
 const elementRef = useRef()
-
-
+ 
 useEffect(() =>{
-const viewChange = (entries) =>{
-   const image = entries[0]
-   if(image.isIntersecting){
-     // setShowImage(true)
-     console.log(image.isIntersecting)
-   }
+
+const viewImage = (entries) =>{
+  entries.forEach((entry) =>{
+    if(entry.isIntersecting){
+      //console.log("bien")
+      const element = entry.target
+      const imageSrc = element.getAttribute('data-src')
+
+      element.setAttribute('src', imageSrc)
+    }
+  }) 
+
 }
 
-
-
-const observer = new IntersectionObserver(viewChange, {  rootMargin: '100px'});
-observer.observe(elementRef.current)
-
+  const observer = new IntersectionObserver(viewImage,{threshold:1})
+  observer.observe(elementRef.current)
 },[])
 
 return(
 
- <div className="oompaLoompaContent" ref={elementRef} >
-   <img alt="OompaImage" src={image} /> 
+ <div className="oompaLoompaContent"  >
+    
+  
+ <img alt="OompaImage" className="imagesOompaLoompas" ref={elementRef}  data-src={image} />
    <div>
 <div className="name">{firstName} {lastName}</div>
 <div className="gender">{gender === "F" ? "Female" : "Male"}</div>
 <div className="profession">{profession}</div>
 </div>
+
+
+
 </div>
 
 )

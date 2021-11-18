@@ -1,6 +1,6 @@
 import { API } from "api";
 import SearchBar from "components/SearchBar";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import OompaLoompaMain from "./components/OompaLoompaMain";
 
 const axios = require("axios");
@@ -12,6 +12,10 @@ const MainView = () => {
   const [oompas, setOompas] = useState([]);
   const [oompasToFilter, setOompasToFilter] = useState([]);
   const [search, setSearch] = useState("ei");
+ 
+
+
+
 
   useEffect(() => {
     getOompas();
@@ -53,6 +57,14 @@ loompaSearch(searchBar)
   setOompas(loompaResult)
 }
 
+
+
+
+
+
+
+
+
   return (
     <div className="MainContainer">
       <SearchBar search={search} searchValue={searchValue} />
@@ -62,12 +74,15 @@ loompaSearch(searchBar)
         <div className="subTitle">There are more than 100k</div>
       </div>
 
-      <div className="oompaLoompasContainer">
+      <div className="oompaLoompasContainer"  >
+      
+
       
         {oompas &&
           oompas.map((oompa) => (
-            
-            <OompaLoompaMain 
+           
+        
+            <OompaLoompaMain   
               key={oompa.id}
               id={oompa.id}
               image={oompa.image}
@@ -76,8 +91,12 @@ loompaSearch(searchBar)
               gender={oompa.gender}
               profession={oompa.profession}
             />
-              
+               
+          
+                
           ))}
+
+   
       </div>
     </div>
   );
