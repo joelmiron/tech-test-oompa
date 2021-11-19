@@ -24,6 +24,8 @@ const viewImage = (entries) =>{
 
   const observer = new IntersectionObserver(viewImage,{threshold:1})
   observer.observe(elementRef.current)
+
+  
 },[])
 
 return(
