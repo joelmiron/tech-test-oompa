@@ -17,30 +17,31 @@ export const useGetOompas = (actualDateStorage,refreshingDateStorage,page) =>{
   
   
     const getOompas = async () => {
-
-    if(oompas.length === 0){
-
- 
+      let actualDate = moment().format("LLL");
+  window.localStorage.setItem("actualDate", JSON.stringify(actualDate));
       const response = await axios.get(API + page);
-      setOompas(response.data.results);
-      setOompasToFilter(response.data.results);
+
+      if(oompas.length === 0 || moment(actualDateStorage).isAfter(refreshingDateStorage)){
+      if(moment(actualDateStorage).isAfter(refreshingDateStorage)){
+localStorage.clear();
+
+
+
+setOompas(response.data.results);
+setOompasToFilter(response.data.results);
+}else{
+
+  
+  setOompas(response.data.results);
+  setOompasToFilter(response.data.results);
+  let clearDate = moment().add(1, "day").format("LLL")
+        window.localStorage.setItem("refreshingDate", JSON.stringify(clearDate));
+      
+      }
 
     }
 
-if(moment(actualDateStorage).isAfter(refreshingDateStorage)){
-  localStorage.clear();
-  console.log("tiempo agotado")
-
-}else{
-
-     
-        let clearDate = moment().add(1, "day").format("LLL")
-        window.localStorage.setItem("storagedOompaLoompas", JSON.stringify(oompas));
-        window.localStorage.setItem("refreshingDate", JSON.stringify(clearDate));
-        console.log("introduciendo oompas en local storage")
-      }
-
-    };
+  };
 
 
     return [

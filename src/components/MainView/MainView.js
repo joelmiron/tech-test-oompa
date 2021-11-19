@@ -1,5 +1,6 @@
 import SearchBar from "components/SearchBar";
 import { useGetOompas } from "hooks/useGetOompas";
+import { useLocalStorage } from "hooks/useLocalStorage";
 import React, { useEffect, useState } from "react";
 import OompaLoompaMain from "./components/OompaLoompaMain";
 const moment = require("moment");
@@ -10,13 +11,14 @@ const MainView = () => {
   const actualDateStorage = JSON.parse(window.localStorage.getItem('actualDate'));
   const refreshingDateStorage = JSON.parse( window.localStorage.getItem("refreshingDate"));
   const [oompas,setOompas, oompasToFilter] = useGetOompas(actualDateStorage,refreshingDateStorage,1)
+useLocalStorage(actualDateStorage,refreshingDateStorage,oompas,setOompas,oompasToFilter)
 
 
 
-  useEffect(() => {
-    let actualDate = moment().format("LLL");
-    window.localStorage.setItem("actualDate", JSON.stringify(actualDate));
-  }, []);
+  // useEffect(() => {
+  //   let actualDate = moment().format("LLL");
+  //   window.localStorage.setItem("actualDate", JSON.stringify(actualDate));
+  // }, []);
 
 
 
