@@ -1,24 +1,47 @@
 import SearchBar from "components/SearchBar";
+import { Suspense } from "react";
 import { useGetOompas } from "hooks/useGetOompas";
 import { useLocalStorage } from "hooks/useLocalStorage";
+import { useNextPage } from "hooks/useNextPage";
 import React, { useEffect, useRef, useState } from "react";
-import OompaLoompaMain from "./components/OompaLoompaMain";
-const moment = require("moment");
+const  OompaLoompaMain = React.lazy( ()=> import('./components/OompaLoompaMain'));
+
+
+
 
 const MainView = () => {
+  const [page,setPage] = useState(1)
   const [search, setSearch] = useState("");
   const actualDateStorage = JSON.parse(window.localStorage.getItem("actualDate"));
   const refreshingDateStorage = JSON.parse(window.localStorage.getItem("refreshingDate"));
-  const [oompas, setOompas, oompasToFilter] = useGetOompas(actualDateStorage,refreshingDateStorage,1);
-  const elementRef = useRef()
+  const [oompas, setOompas,oompasToFilter] = useGetOompas(actualDateStorage,refreshingDateStorage,page);
+  const elementRef = useRef() 
+  const isNextPage = useNextPage(page,setPage,oompas,elementRef)
 
-  useLocalStorage(actualDateStorage,refreshingDateStorage,oompas,setOompas,oompasToFilter);
+  //useLocalStorage(actualDateStorage,refreshingDateStorage,oompas,setOompas,oompasToFilter);
+  //console.log(isNextPage)
+
+
+  useEffect(() =>{
+if(isNextPage)  {
+  setPage(page => page + 1) 
+  console.log(page)
+}
+  },[isNextPage])
+
+
+
+
+
+
 
   const searchValue = (e) => {
     let searchBar = e.target.value;
     setSearch(searchBar);
     loompaSearch(searchBar);
   };
+
+
 
   const loompaSearch = (searchBar) => {
     var loompaResult = oompasToFilter.filter((loompa) => {
@@ -44,17 +67,6 @@ const MainView = () => {
 
 
 
-  useEffect(()=>{
-    const observeNextPage = (entries) =>{
-const nextPage = entries[0]
-if(nextPage.isIntersecting){
-  console.log("nueva pagina")
-}
-    }
-const observer =  new IntersectionObserver(observeNextPage,{rootMargin:'100px'})
-    observer.observe(elementRef.current)
-
-  },[])
 
   return (
     <div className="MainContainer">
@@ -66,6 +78,7 @@ const observer =  new IntersectionObserver(observeNextPage,{rootMargin:'100px'})
       </div>
 
       <div className="oompaLoompasContainer">
+        <Suspense fallback={null}>
         {oompas &&
           oompas.map((oompa) => (
             <OompaLoompaMain
@@ -78,6 +91,7 @@ const observer =  new IntersectionObserver(observeNextPage,{rootMargin:'100px'})
               profession={oompa.profession}
             />
           ))}
+          </Suspense>
 
 <div ref={elementRef}></div>
       </div>
