@@ -1,38 +1,24 @@
-import { API } from "api";
 import SearchBar from "components/SearchBar";
-import React, { useEffect, useState, useRef } from "react";
+import { useGetOompas } from "hooks/useGetOompas";
+import React, { useEffect, useState } from "react";
 import OompaLoompaMain from "./components/OompaLoompaMain";
+const moment = require("moment");
 
-const axios = require("axios");
 
 const MainView = () => {
-
-
-  const [page, setPage] = useState(1);
-  const [oompas, setOompas] = useState([]);
-  const [oompasToFilter, setOompasToFilter] = useState([]);
-  const [search, setSearch] = useState("ei");
- 
-
+  const [search, setSearch] = useState("");
+  const actualDateStorage = JSON.parse(window.localStorage.getItem('actualDate'));
+  const refreshingDateStorage = JSON.parse( window.localStorage.getItem("refreshingDate"));
+  const [oompas,setOompas, oompasToFilter] = useGetOompas(actualDateStorage,refreshingDateStorage,1)
 
 
 
   useEffect(() => {
-    getOompas();
-
+    let actualDate = moment().format("LLL");
+    window.localStorage.setItem("actualDate", JSON.stringify(actualDate));
   }, []);
 
 
-
-  const getOompas = async () => {
-    try {
-      const response = await axios.get(API + page);
-      setOompas(response.data.results);
-      setOompasToFilter(response.data.results);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const searchValue = (e) => {
 let searchBar = (e.target.value)
@@ -45,24 +31,16 @@ loompaSearch(searchBar)
 
    const loompaSearch  = (searchBar) =>{
 
- var loompaResult  =   oompasToFilter.filter(loompa => {
+ var loompaResult  = oompasToFilter.filter(loompa => {
    if(loompa.first_name.toString().toLowerCase().includes(searchBar.toLowerCase()) ||
   loompa.last_name.toString().toLowerCase().includes(searchBar.toLowerCase()) ||
    loompa.profession.toString().toLowerCase().includes(searchBar.toLowerCase())
    ){
      return loompa
-   }
-  })
-
+    }})
   setOompas(loompaResult)
+
 }
-
-
-
-
-
-
-
 
 
   return (

@@ -1,4 +1,4 @@
-import MainView from 'components/MainView';
+import MainView from 'components/MainView/MainView';
 import Navigation from 'components/Navigation';
 import TopBar from 'components/Navigation/TopBar';
 import './App.css';
