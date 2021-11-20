@@ -68,3 +68,36 @@
 
 
   }
+
+
+  @media (max-width: 1300px){
+$space : 100px;
+
+
+.titleContainer{
+  padding: 10px 0px 10px $space;
+  }
+
+
+  .searchBar input{
+    max-width: $space;
+  }
+
+
+  }
+
+
+  @media (max-width: 800px){
+    $space : 20px;
+
+
+    .titleContainer{
+      padding: 10px 0px 10px $space;
+      }
+    
+    
+     
+
+  }
+
+ 

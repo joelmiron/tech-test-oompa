@@ -60,9 +60,76 @@ color: #b9b9b9;;
 
 
 @media (min-width: 1820px) {
+  
   $space : 200px;
   .MainContainer {
     padding: 0 $space;
+  }
+
+
+
+}
+
+@media (max-width: 1300px){
+  $space : 100px;
+  .oompaLoompasContainer{
+    div{
+      flex: 1 31%;
+    }
+  }
+
+  .MainContainer {
+    padding: 0 $space;
+  }
+
+
+  .titleMain{
+    .title{
+font-size: 38px;
+    }
+    .subTitle{
+      font-size: 22px;
+    }
+  }
+
+}
+
+
+
+@media (max-width: 800px){
+  $space : 20px;
+
+
+  .MainContainer {
+    padding: 0 $space;
+  }
+
+
+  .titleMain{
+    .title{
+font-size: 33px;
+    }
+    .subTitle{
+      font-size: 22px;
+    }
+  }
+
+}
+
+
+
+@media (max-width: 500px){
+
+
+  .titleMain{
+    .title{
+font-size: 28px;
+    }
+
+
+    .subTitle{
+      font-size:  20px;
+    }
   }
 
 }
