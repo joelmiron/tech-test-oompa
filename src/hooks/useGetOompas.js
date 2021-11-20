@@ -4,6 +4,7 @@ const axios = require("axios");
 const moment = require("moment");
 
 export const useGetOompas = (actualDateStorage,refreshingDateStorage,page) => {
+  
   const [oompas, setOompas] = useState(JSON.parse(window.localStorage.getItem("storagedOompaLoompas")) || []);
   const [oompasToFilter, setOompasToFilter] = useState(JSON.parse(window.localStorage.getItem("storagedOompaLoompas")) || []);
 

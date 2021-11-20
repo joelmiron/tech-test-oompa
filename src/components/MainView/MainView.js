@@ -16,7 +16,7 @@ const MainView = () => {
   const refreshingDateStorage = JSON.parse(window.localStorage.getItem("refreshingDate"));
   const [oompas, setOompas,oompasToFilter] = useGetOompas(actualDateStorage,refreshingDateStorage,page);
   const elementRef = useRef() 
-  const isNextPage = useNextPage(page,setPage,oompas,elementRef)
+  const isNextPage = useNextPage(elementRef)
 
   //useLocalStorage(actualDateStorage,refreshingDateStorage,oompas,setOompas,oompasToFilter);
   //console.log(isNextPage)

@@ -1,22 +1,28 @@
 import { useState } from "react"
 import { useEffect } from "react/cjs/react.development"
 
-export const useNextPage = (page,setPage,oompas,elementRef) =>{
-    const[isNextPage, setIsNextPage] = useState(false)
+export const useNextPage = (elementRef) =>{
+   const[isNextPage, setIsNextPage] = useState(false)
     
-console.log(elementRef)
+
     useEffect(()=>{
       const observeNextPage = (entries) =>{
   const nextPage = entries[0]
   if(nextPage.isIntersecting){
-    setIsNextPage(true)
-  
+
+    console.log("intersection")
    // const response = await axios.get(API + page);
 
-
+   changePage()
+    observer.disconnect()
+  
   }
       }
-
+  
+      const changePage = () =>{
+        setIsNextPage(true)
+       }
+     
 
 
   const observer =  new IntersectionObserver(observeNextPage,{rootMargin:'100px'})
