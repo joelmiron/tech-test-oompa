@@ -1,4 +1,5 @@
 import { useEffect,useState,useRef } from "react";
+import { useHistory } from "react-router";
 
 
 
@@ -6,6 +7,7 @@ const OompaLoompaMain = ({ id, image, firstName, lastName,gender,profession}) =>
 
   //const [showImage,setShowImage] = useState(false)
 const elementRef = useRef()
+const history=useHistory()
  
 useEffect(() =>{
 
@@ -28,9 +30,13 @@ const viewImage = (entries) =>{
   
 },[])
 
+const loompaDetails = (oompaLoompa) =>{
+  history.push("/"+ oompaLoompa)
+}
+
 return(
 
- <div className="oompaLoompaContent"  >
+ <div className="oompaLoompaContent"  onClick={() => loompaDetails(id)}>
     
   
  <img alt="OompaImage" className="imagesOompaLoompas" ref={elementRef}  data-src={image} />

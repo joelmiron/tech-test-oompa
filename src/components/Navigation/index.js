@@ -2,6 +2,7 @@ import { Redirect, Switch } from "react-router";
 import { Route, Link, BrowserRouter } from "react-router-dom";
 import MainView from 'components/MainView/MainView';
 import TopBar from 'components/Navigation/TopBar'
+import { OompaLoompaDetail } from "components/MainView/components/OompaLoompaDetail";
 
 const Navigation = () => {
   return (
@@ -12,7 +13,7 @@ const Navigation = () => {
 
         <Switch>
           <Route exact path="/">     <MainView/></Route>
-          <Route path="/detail"> </Route>
+          <Route path="/:id"><OompaLoompaDetail/> </Route>
           <Redirect to="/" />
         </Switch>
 

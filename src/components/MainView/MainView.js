@@ -1,7 +1,6 @@
 import SearchBar from "components/SearchBar";
 import { Suspense } from "react";
 import { useGetOompas } from "hooks/useGetOompas";
-import { useLocalStorage } from "hooks/useLocalStorage";
 import { useNextPage } from "hooks/useNextPage";
 import React, { useEffect, useRef, useState } from "react";
 const  OompaLoompaMain = React.lazy( ()=> import('./components/OompaLoompaMain'));
@@ -10,24 +9,27 @@ const  OompaLoompaMain = React.lazy( ()=> import('./components/OompaLoompaMain')
 
 
 const MainView = () => {
+  const type ="all"
   const [page,setPage] = useState(1)
   const [search, setSearch] = useState("");
-  const actualDateStorage = JSON.parse(window.localStorage.getItem("actualDate"));
-  const refreshingDateStorage = JSON.parse(window.localStorage.getItem("refreshingDate"));
-  const [oompas, setOompas,oompasToFilter] = useGetOompas(actualDateStorage,refreshingDateStorage,page);
+  const [oompas, setOompas,oompasToFilter] = useGetOompas(page,type);
   const elementRef = useRef() 
   const isNextPage = useNextPage(elementRef)
 
-  //useLocalStorage(actualDateStorage,refreshingDateStorage,oompas,setOompas,oompasToFilter);
-  //console.log(isNextPage)
 
 
   useEffect(() =>{
 if(isNextPage)  {
   setPage(page => page + 1) 
   console.log(page)
-}
-  },[isNextPage])
+}},[isNextPage])
+
+
+
+useEffect(() =>{
+  window.localStorage.setItem(type+"storagedOompaLoompas", JSON.stringify(oompas));
+},[oompas])
+
 
 
 
