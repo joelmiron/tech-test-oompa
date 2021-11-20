@@ -10,9 +10,10 @@ const  OompaLoompaMain = React.lazy( ()=> import('./components/OompaLoompaMain')
 
 const MainView = () => {
   const type ="all"
+  const api= "https://2q2woep105.execute-api.eu-west-1.amazonaws.com/napptilus/oompa-loompas?page="
   const [page,setPage] = useState(1)
   const [search, setSearch] = useState("");
-  const [oompas, setOompas,oompasToFilter] = useGetOompas(page,type);
+  const [oompas, setOompas,oompasToFilter] = useGetOompas(page,type,api);
   const elementRef = useRef() 
   const isNextPage = useNextPage(elementRef)
 
@@ -27,7 +28,7 @@ if(isNextPage)  {
 
 
 useEffect(() =>{
-  window.localStorage.setItem(type+"storagedOompaLoompas", JSON.stringify(oompas));
+  window.localStorage.setItem(type + "storagedOompaLoompas", JSON.stringify(oompas));
 },[oompas])
 
 

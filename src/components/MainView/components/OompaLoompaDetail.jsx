@@ -7,7 +7,8 @@ import { useEffect } from "react/cjs/react.development";
 export const OompaLoompaDetail = () =>{
     const type = "single"
     let {id} = useParams();
-    const [oompas, setOompas,oompasToFilter] = useGetOompas(id,type);
+    const api= "https://2q2woep105.execute-api.eu-west-1.amazonaws.com/napptilus/oompa-loompas/"
+    const [oompas, setOompas,oompasToFilter] = useGetOompas(id,type,api);
 
 
     useEffect(() =>{
