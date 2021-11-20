@@ -2,7 +2,7 @@
 //$colorGrey:  #dedede;
 
 .MainContainer {
-  padding: 0 120px;
+  padding: 0 $space;
 }
 
 .titleMain{
@@ -57,3 +57,12 @@ color: #b9b9b9;;
 }
 }
 
+
+
+@media (min-width: 1820px) {
+  $space : 200px;
+  .MainContainer {
+    padding: 0 $space;
+  }
+
+}

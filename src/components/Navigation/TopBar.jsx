@@ -7,7 +7,10 @@ const TopBar = () =>{
     console.log(history);
 
 const navigation = () =>{
-    history.push("/")
+   
+        history.replace("/")
+    
+   
 }
 
 

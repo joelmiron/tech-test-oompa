@@ -7,8 +7,10 @@
 .titleContainer{
     display: flex;
       align-items: center;
-      padding: 10px 0px 10px 120px;
-  }
+      padding: 10px 0px 10px $space;
+  
+      }
+  
   
   .loompaImg{
     width: 35px;
@@ -35,7 +37,7 @@
   border:  1px solid #d8d8d8;
   text-align: left;
   border-radius: 4px;
-  max-width: 120px;
+  max-width: $space;
   
   }
   .inputContainer{
@@ -49,4 +51,20 @@
       top: 7px;
       padding-left: 5px;
       border-left: 1px solid #d8d8d8;
+  } 
+  
+  
+  @media (min-width: 1820px) {
+    $space : 200px;
+    .titleContainer{
+    padding: 10px 0px 10px $space;
+    }
+
+
+    .searchBar input{
+      max-width: $space;
+    }
+
+
+
   }
