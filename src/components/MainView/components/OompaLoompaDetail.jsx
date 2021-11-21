@@ -25,6 +25,9 @@ export const OompaLoompaDetail = () => {
   }
 
   return (
+    <>
+    {storagedOompaLoompa?
+
     <div className="detail">
       <div className="detailContainer">
         <div className="oompaImage">
@@ -46,5 +49,7 @@ export const OompaLoompaDetail = () => {
         </div>
       </div>
     </div>
+    : <div>loading</div>}
+    </>
   );
 };

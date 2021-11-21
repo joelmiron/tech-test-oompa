@@ -33,7 +33,7 @@ const customApi=api+id
 
         if(type === "all"){
           setOompas(response.data.results);
-       
+          window.localStorage.setItem(type + "storagedOompaLoompas", JSON.stringify(response.data.results));
         }else{
 
 
