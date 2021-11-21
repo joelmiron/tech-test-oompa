@@ -40,7 +40,6 @@ const customApi=api+id
 
          
           setOompas(response.data);
-         // window.localStorage.setItem(id + "storagedOompaLoompa",JSON.stringify(response.data));
         }
        
         window.localStorage.setItem(type+"actualDate", JSON.stringify(actualDate));

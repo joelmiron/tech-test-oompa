@@ -54,6 +54,9 @@
   .detailContainer {
     flex-direction: column;
   }
+  .oompaDetail {
+    padding-left: unset;
+  }
 }
 
 @media (max-width: 500px) {
