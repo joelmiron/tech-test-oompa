@@ -1,4 +1,4 @@
-import SearchBar from "components/SearchBar";
+import SearchBar from "components/SearchBar/SearchBar";
 import { Suspense } from "react";
 import { useGetOompas } from "hooks/useGetOompas";
 import { useNextPage } from "hooks/useNextPage";

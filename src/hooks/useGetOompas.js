@@ -13,6 +13,7 @@ const customApi=api+id
  
   useEffect(() => {
     getOompas();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getOompas = async () => {
@@ -36,8 +37,9 @@ const customApi=api+id
           window.localStorage.setItem(type + "storagedOompaLoompas", JSON.stringify(response.data.results));
         }else{
 
-
+         
           setOompas(response.data);
+          window.localStorage.setItem(id + "storagedOompaLoompa",JSON.stringify(response.data));
         }
        
         window.localStorage.setItem(type+"actualDate", JSON.stringify(actualDate));

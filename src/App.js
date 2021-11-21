@@ -1,4 +1,4 @@
-import Navigation from 'components/Navigation';
+import Navigation from 'components/Navigation/Navigation';
 import './App.css';
 import 'scss/Master.scss'
 import { BrowserRouter } from 'react-router-dom';

@@ -1,6 +1,7 @@
 import { useGetOompas } from "hooks/useGetOompas";
 import { useParams } from "react-router";
 import { useEffect, useState } from "react/cjs/react.development";
+import BodyDetail from "./BodyDetail";
 
 export const OompaLoompaDetail = () => {
   
@@ -13,6 +14,7 @@ export const OompaLoompaDetail = () => {
 
   useEffect(() => { 
     updateStorageItems(oompa)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [oompa]);
 
   const updateStorageItems = (oompa) =>{
@@ -26,29 +28,19 @@ export const OompaLoompaDetail = () => {
 
   return (
     <>
-    {storagedOompaLoompa?
-
-    <div className="detail">
-      <div className="detailContainer">
-        <div className="oompaImage">
-          <img src={storagedOompaLoompa.image} alt="OompaImage" />
-        </div>
-        <div className="oompaDetail">
-          <div className="infoSpace">
-            <div className="name">
-              {storagedOompaLoompa.first_name} {storagedOompaLoompa.last_name}
-            </div>
-            <div className="gender">
-              {storagedOompaLoompa.gender === "F" ? "Female" : "Man"}
-            </div>
-            <div className="profession">{storagedOompaLoompa.profession}</div>
-          </div>
-
-    {storagedOompaLoompa.description && storagedOompaLoompa.description.replace(/(<([^>]+)>)/gi, "")}
-          <br />
-        </div>
-      </div>
-    </div>
+    {storagedOompaLoompa ?
+  
+<BodyDetail  
+image={storagedOompaLoompa.image}
+ name={storagedOompaLoompa.first_name}
+  lastName={storagedOompaLoompa.last_name}
+   gender={storagedOompaLoompa.gender} 
+   profession={storagedOompaLoompa.profession}
+   description={storagedOompaLoompa.description}
+   
+   />
+   
+  
     : <div>loading</div>}
     </>
   );
