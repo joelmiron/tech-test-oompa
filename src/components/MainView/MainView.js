@@ -3,35 +3,31 @@ import { Suspense } from "react";
 import { useGetOompas } from "hooks/useGetOompas";
 import { useNextPage } from "hooks/useNextPage";
 import React, { useEffect, useRef, useState } from "react";
-const  OompaLoompaMain = React.lazy( ()=> import('./components/OompaLoompaMain'));
-
-
-
+const OompaLoompaMain = React.lazy(() =>
+  import("./components/OompaLoompaMain")
+);
 
 const MainView = () => {
-  const type ="all"
-  const api= "https://2q2woep105.execute-api.eu-west-1.amazonaws.com/napptilus/oompa-loompas?page="
-  const [page,setPage] = useState(1)
+  const type = "all";
+  const api =
+    "https://2q2woep105.execute-api.eu-west-1.amazonaws.com/napptilus/oompa-loompas?page=";
+  const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
-  const [oompas, setOompas,oompasToFilter] = useGetOompas(page,type,api);
-  const elementRef = useRef() 
-  const isNextPage = useNextPage(elementRef)
+  const [oompas, setOompas, oompasToFilter] = useGetOompas(page, type, api);
+  const elementRef = useRef();
+  const isNextPage = useNextPage(elementRef);
 
-
-
-  useEffect(() =>{
-if(isNextPage)  {
-  setPage(page => page + 1) 
-
-}},[isNextPage])
+  useEffect(() => {
+    if (isNextPage) {
+      setPage((page) => page + 1);
+    }
+  }, [isNextPage]);
 
   const searchValue = (e) => {
     let searchBar = e.target.value;
     setSearch(searchBar);
     loompaSearch(searchBar);
   };
-
-
 
   const loompaSearch = (searchBar) => {
     var loompaResult = oompasToFilter.filter((loompa) => {
@@ -56,9 +52,6 @@ if(isNextPage)  {
     setOompas(loompaResult);
   };
 
-
-
-
   return (
     <div className="MainContainer">
       <SearchBar search={search} searchValue={searchValue} />
@@ -70,24 +63,24 @@ if(isNextPage)  {
 
       <div className="oompaLoompasContainer">
         <Suspense fallback={null}>
-        {oompas ?
-          oompas.map((oompa) => (
-            <OompaLoompaMain
-              key={oompa.id}
-              id={oompa.id}
-              image={oompa.image}
-              firstName={oompa.first_name}
-              lastName={oompa.last_name}
-              gender={oompa.gender}
-              profession={oompa.profession}
-            />
-          )) :<></>}
-          </Suspense>
-
-
+          {oompas ? (
+            oompas.map((oompa) => (
+              <OompaLoompaMain
+                key={oompa.id}
+                id={oompa.id}
+                image={oompa.image}
+                firstName={oompa.first_name}
+                lastName={oompa.last_name}
+                gender={oompa.gender}
+                profession={oompa.profession}
+              />
+            ))
+          ) : (
+            <></>
+          )}
+        </Suspense>
       </div>
       <div ref={elementRef}></div>
-     
     </div>
   );
 };

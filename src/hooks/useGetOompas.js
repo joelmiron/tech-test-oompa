@@ -8,7 +8,8 @@ export const useGetOompas = (id, type,api) => {
 const customApi=api+id
   const actualDateStorage = JSON.parse(window.localStorage.getItem(type+"actualDate"));
   const refreshingDateStorage = JSON.parse(window.localStorage.getItem(type+"clearDate"));
-  const [oompas, setOompas] = useState(type === "all" ? JSON.parse(window.localStorage.getItem("allstoragedOompaLoompas")) || [] : []);
+  const [oompas, setOompas] = useState(type === "all" ? JSON.parse(window.localStorage.getItem("allstoragedOompaLoompas")) || []
+   : JSON.parse(window.localStorage.getItem(id+"storagedOompaLoompa")) || []);
   const [oompasToFilter, setOompasToFilter] = useState([]);
  
   useEffect(() => {
@@ -29,7 +30,7 @@ const customApi=api+id
         localStorage.removeItem(type+"clearDate");
         localStorage.removeItem(type+"actualdate");
         localStorage.removeItem(id+"storagedOompaLoompa");
-     
+    
         } 
 
         if(type === "all"){
@@ -39,7 +40,7 @@ const customApi=api+id
 
          
           setOompas(response.data);
-          window.localStorage.setItem(id + "storagedOompaLoompa",JSON.stringify(response.data));
+         // window.localStorage.setItem(id + "storagedOompaLoompa",JSON.stringify(response.data));
         }
        
         window.localStorage.setItem(type+"actualDate", JSON.stringify(actualDate));

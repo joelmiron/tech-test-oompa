@@ -1,37 +1,25 @@
-import { useState } from "react"
-import { useEffect } from "react/cjs/react.development"
+import { useState } from "react";
+import { useEffect } from "react/cjs/react.development";
 
-export const useNextPage = (elementRef) =>{
-   const[isNextPage, setIsNextPage] = useState(false)
-    
+export const useNextPage = (elementRef) => {
+  const [isNextPage, setIsNextPage] = useState(false);
 
-    useEffect(()=>{
-      const observeNextPage = (entries) =>{
-  const nextPage = entries[0]
-  if(nextPage.isIntersecting){
-    console.log("intersection")
-   setIsNextPage(true)
-  
-  }
+  useEffect(() => {
+    const observeNextPage = (entries) => {
+      const nextPage = entries[0];
+      if (nextPage.isIntersecting) {
+        console.log("intersection");
+        setIsNextPage(true);
       }
-  
-     
+    };
 
+    const observer = new IntersectionObserver(observeNextPage, {
+      rootMargin: "0px",
+    });
+    observer.observe(elementRef.current);
 
-  const observer =  new IntersectionObserver(observeNextPage,{rootMargin:'0px'})
-      observer.observe(elementRef.current)
-  
+    return [isNextPage];
 
-     
-return [isNextPage]
-
- // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[isNextPage])
-
-  
-
-
-    
-  
-  }
-   
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isNextPage]);
+};
