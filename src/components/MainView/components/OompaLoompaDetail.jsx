@@ -9,7 +9,7 @@ export const OompaLoompaDetail = () => {
   const api ="https://2q2woep105.execute-api.eu-west-1.amazonaws.com/napptilus/oompa-loompas/";
   let [oompa] = useGetOompas(id, type, api);
   const [storagedOompaLoompa, setStoragedOompaLoompa] = useState(JSON.parse(window.localStorage.getItem(id + "storagedOompaLoompa")) || [])
-
+  const description= oompa.description
 
 
   useEffect(() => { 
@@ -17,13 +17,12 @@ export const OompaLoompaDetail = () => {
   }, [oompa]);
 
   const updateStorageItems = (oompa) =>{
-    
    if(Object.keys(storagedOompaLoompa).length === 0){
     setStoragedOompaLoompa(oompa)
   window.localStorage.setItem(id + "storagedOompaLoompa",JSON.stringify(oompa));
 }
-   // const newDescription = oompa.description.replace(/(<([^>]+)>)/gi, "");
-   // setDescription(newDescription)
+
+    
   }
 
   return (
@@ -43,7 +42,7 @@ export const OompaLoompaDetail = () => {
             <div className="profession">{storagedOompaLoompa.profession}</div>
           </div>
 
-          {/* {description && description} */}
+    {storagedOompaLoompa.description && storagedOompaLoompa.description.replace(/(<([^>]+)>)/gi, "")}
           <br />
         </div>
       </div>
