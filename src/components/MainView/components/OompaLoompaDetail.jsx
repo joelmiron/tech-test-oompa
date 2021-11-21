@@ -17,6 +17,7 @@ export const OompaLoompaDetail = () => {
   }, [oompa]);
 
   const updateStorageItems = (oompa) =>{
+    
    if(Object.keys(storagedOompaLoompa).length === 0){
     setStoragedOompaLoompa(oompa)
   window.localStorage.setItem(id + "storagedOompaLoompa",JSON.stringify(oompa));

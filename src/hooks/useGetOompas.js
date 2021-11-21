@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 const axios = require("axios");
 const moment = require("moment");
 
-export const useGetOompas = (page, type,api) => {
+export const useGetOompas = (id, type,api) => {
 
 
-const customApi=api+page
+const customApi=api+id
   const actualDateStorage = JSON.parse(window.localStorage.getItem(type+"actualDate"));
   const refreshingDateStorage = JSON.parse(window.localStorage.getItem(type+"clearDate"));
   const [oompas, setOompas] = useState(type === "all" ? JSON.parse(window.localStorage.getItem("allstoragedOompaLoompas")) || [] : []);
@@ -26,7 +26,7 @@ const customApi=api+page
       if (moment(actualDateStorage).isAfter(refreshingDateStorage)) {
         localStorage.removeItem(type+"clearDate");
         localStorage.removeItem(type+"actualdate");
-        localStorage.removeItem(page+"storagedOompaLoompa");
+        localStorage.removeItem(id+"storagedOompaLoompa");
      
         } 
 

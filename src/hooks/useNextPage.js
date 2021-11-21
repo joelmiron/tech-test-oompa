@@ -9,23 +9,16 @@ export const useNextPage = (elementRef) =>{
       const observeNextPage = (entries) =>{
   const nextPage = entries[0]
   if(nextPage.isIntersecting){
-
     console.log("intersection")
-   // const response = await axios.get(API + page);
-
-   changePage()
-    observer.disconnect()
+   setIsNextPage(true)
   
   }
       }
   
-      const changePage = () =>{
-        setIsNextPage(true)
-       }
      
 
 
-  const observer =  new IntersectionObserver(observeNextPage,{rootMargin:'100px'})
+  const observer =  new IntersectionObserver(observeNextPage,{rootMargin:'0px'})
       observer.observe(elementRef.current)
   
 

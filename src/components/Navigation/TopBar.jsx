@@ -4,7 +4,6 @@ import { useHistory } from "react-router"
 
 const TopBar = () =>{
     const history = useHistory();
-    console.log(history);
 
 const navigation = () =>{
    

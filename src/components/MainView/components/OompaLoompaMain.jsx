@@ -12,7 +12,6 @@ useEffect(() =>{
 const viewImage = (entries) =>{
   entries.forEach((entry) =>{
     if(entry.isIntersecting){
-      //console.log("bien")
       const element = entry.target
       const imageSrc = element.getAttribute('data-src')
 
