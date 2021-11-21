@@ -7,6 +7,7 @@ export const OompaLoompaDetail = () => {
   let { id } = useParams();
   const api ="https://2q2woep105.execute-api.eu-west-1.amazonaws.com/napptilus/oompa-loompas/";
   let [oompa] = useGetOompas(id, type, api);
+  const [description,setDescription] = useState()
 
   useEffect(() => {
 
@@ -19,7 +20,8 @@ export const OompaLoompaDetail = () => {
     
 
     window.localStorage.setItem(type + "storagedOompaLoompas",JSON.stringify(oompa));
-
+    const newDescription = oompa.description.replace(/(<([^>]+)>)/gi, "");
+    setDescription(newDescription)
   }
 
 
@@ -41,7 +43,7 @@ export const OompaLoompaDetail = () => {
             <div className="profession">{oompa.profession}</div>
           </div>
 
-          {oompa.description}
+          {description}
           <br />
         </div>
       </div>

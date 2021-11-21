@@ -24,9 +24,10 @@ const oompasUpdated= []
     window.localStorage.setItem(type+"actualDate", JSON.stringify(actualDate));
     const response = await axios.get(customApi);
 
-    // if(oompas.length >= 1){
+    // if(oompas.length >= 1 && type=== "single"){
     //   oompasUpdated.push(...oompas, response.data)
     //   console.log("UPDATE"+oompasUpdated)
+    //  // setOompas(oompasUpdated);
     // }
 
 

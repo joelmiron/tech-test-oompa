@@ -82,7 +82,7 @@ useEffect(() =>{
 
       <div className="oompaLoompasContainer">
         <Suspense fallback={null}>
-        {oompas &&
+        {oompas ?
           oompas.map((oompa) => (
             <OompaLoompaMain
               key={oompa.id}
@@ -93,7 +93,7 @@ useEffect(() =>{
               gender={oompa.gender}
               profession={oompa.profession}
             />
-          ))}
+          )) :<></>}
           </Suspense>
 
 <div ref={elementRef}></div>
