@@ -8,10 +8,9 @@ export const useGetOompas = (page, type,api) => {
 const customApi=api+page
   const actualDateStorage = JSON.parse(window.localStorage.getItem(type+"actualDate"));
   const refreshingDateStorage = JSON.parse(window.localStorage.getItem(type+"clearDate"));
-  const [oompas, setOompas] = useState(JSON.parse(window.localStorage.getItem(type+"storagedOompaLoompas")) || [] );
+  const [oompas, setOompas] = useState(type === "all" ? JSON.parse(window.localStorage.getItem("allstoragedOompaLoompas")) || [] : []);
 
-  const [oompasToFilter, setOompasToFilter] = useState(JSON.parse(window.localStorage.getItem(type+"storagedOompaLoompas")) || []);
-const oompasUpdated= []
+  const [oompasToFilter, setOompasToFilter] = useState(JSON.parse(window.localStorage.getItem("allstoragedOompaLoompas")) || []);
  
 
   useEffect(() => {
@@ -23,13 +22,6 @@ const oompasUpdated= []
     var clearDate = moment().add(1, "day").format("LLL");
     window.localStorage.setItem(type+"actualDate", JSON.stringify(actualDate));
     const response = await axios.get(customApi);
-
-    // if(oompas.length >= 1 && type=== "single"){
-    //   oompasUpdated.push(...oompas, response.data)
-    //   console.log("UPDATE"+oompasUpdated)
-    //  // setOompas(oompasUpdated);
-    // }
-
 
     if (oompas.length === 0 || moment(actualDateStorage).isAfter(refreshingDateStorage)) {
       if (moment(actualDateStorage).isAfter(refreshingDateStorage)) {
@@ -53,18 +45,6 @@ const oompasUpdated= []
 
 
     }
-
-
-// if(type==="single"){
-//     if(oompas.length > 0 ){
-
-
-//     updateOompas.push(response.data)
-// setOompas(updateOompas)
-
-   
-//     }
-//   }
 
 }
  

@@ -1,6 +1,5 @@
-export const useLocalStorage = (actualDateStorage,refreshingDateStorage,oompas,setOompas,oompasToFilter) =>{
+export const useLocalStorage = () =>{
 
-window.localStorage.setItem("storagedOompaLoompas", JSON.stringify(oompas));
 
 
       

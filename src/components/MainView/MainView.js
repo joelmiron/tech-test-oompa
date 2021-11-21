@@ -14,6 +14,7 @@ const MainView = () => {
   const [page,setPage] = useState(1)
   const [search, setSearch] = useState("");
   const [oompas, setOompas,oompasToFilter] = useGetOompas(page,type,api);
+  
   const elementRef = useRef() 
   const isNextPage = useNextPage(elementRef)
 
@@ -30,13 +31,6 @@ if(isNextPage)  {
 useEffect(() =>{
   window.localStorage.setItem(type + "storagedOompaLoompas", JSON.stringify(oompas));
 },[oompas])
-
-
-
-
-
-
-
 
   const searchValue = (e) => {
     let searchBar = e.target.value;
@@ -96,8 +90,10 @@ useEffect(() =>{
           )) :<></>}
           </Suspense>
 
-<div ref={elementRef}></div>
+
       </div>
+
+      <div ref={elementRef}></div>
 
      
     </div>

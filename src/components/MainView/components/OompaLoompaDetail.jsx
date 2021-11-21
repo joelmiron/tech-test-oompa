@@ -7,7 +7,9 @@ export const OompaLoompaDetail = () => {
   let { id } = useParams();
   const api ="https://2q2woep105.execute-api.eu-west-1.amazonaws.com/napptilus/oompa-loompas/";
   let [oompa] = useGetOompas(id, type, api);
-  const [description,setDescription] = useState()
+  const [storagedOompaLoompa, setStoragedOompaLoompa] = useState(JSON.parse(window.localStorage.getItem(id + "storagedOompaLoompa")) || [])
+
+
 
   useEffect(() => {
 
@@ -16,13 +18,16 @@ export const OompaLoompaDetail = () => {
   }, [oompa]);
 
   const updateStorageItems = (oompa) =>{
-
-    
-
-    window.localStorage.setItem(type + "storagedOompaLoompas",JSON.stringify(oompa));
-    const newDescription = oompa.description.replace(/(<([^>]+)>)/gi, "");
-    setDescription(newDescription)
+   if(Object.keys(storagedOompaLoompa).length === 0){
+    setStoragedOompaLoompa(oompa)
+  window.localStorage.setItem(id + "storagedOompaLoompa",JSON.stringify(oompa));
+}
+   // const newDescription = oompa.description.replace(/(<([^>]+)>)/gi, "");
+   // setDescription(newDescription)
   }
+
+
+  
 
 
 
@@ -30,20 +35,20 @@ export const OompaLoompaDetail = () => {
     <div className="detail">
       <div className="detailContainer">
         <div className="oompaImage">
-          <img src={oompa.image} alt="OompaImage" />
+          <img src={storagedOompaLoompa.image} alt="OompaImage" />
         </div>
         <div className="oompaDetail">
           <div className="infoSpace">
             <div className="name">
-              {oompa.first_name} {oompa.last_name}
+              {storagedOompaLoompa.first_name} {storagedOompaLoompa.last_name}
             </div>
             <div className="gender">
-              {oompa.gender === "F" ? "Female" : "Man"}
+              {storagedOompaLoompa.gender === "F" ? "Female" : "Man"}
             </div>
-            <div className="profession">{oompa.profession}</div>
+            <div className="profession">{storagedOompaLoompa.profession}</div>
           </div>
 
-          {description}
+          {/* {description && description} */}
           <br />
         </div>
       </div>
