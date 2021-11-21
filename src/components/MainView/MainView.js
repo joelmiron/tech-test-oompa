@@ -92,9 +92,7 @@ useEffect(() =>{
 
 
       </div>
-
       <div ref={elementRef}></div>
-
      
     </div>
   );

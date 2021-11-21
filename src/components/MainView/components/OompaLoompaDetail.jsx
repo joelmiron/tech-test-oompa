@@ -3,17 +3,16 @@ import { useParams } from "react-router";
 import { useEffect, useState } from "react/cjs/react.development";
 
 export const OompaLoompaDetail = () => {
-  const type = "single";
+  
   let { id } = useParams();
+  const type = id;
   const api ="https://2q2woep105.execute-api.eu-west-1.amazonaws.com/napptilus/oompa-loompas/";
   let [oompa] = useGetOompas(id, type, api);
   const [storagedOompaLoompa, setStoragedOompaLoompa] = useState(JSON.parse(window.localStorage.getItem(id + "storagedOompaLoompa")) || [])
 
 
 
-  useEffect(() => {
-
-    
+  useEffect(() => { 
     updateStorageItems(oompa)
   }, [oompa]);
 
@@ -25,11 +24,6 @@ export const OompaLoompaDetail = () => {
    // const newDescription = oompa.description.replace(/(<([^>]+)>)/gi, "");
    // setDescription(newDescription)
   }
-
-
-  
-
-
 
   return (
     <div className="detail">

@@ -9,7 +9,6 @@ const customApi=api+page
   const actualDateStorage = JSON.parse(window.localStorage.getItem(type+"actualDate"));
   const refreshingDateStorage = JSON.parse(window.localStorage.getItem(type+"clearDate"));
   const [oompas, setOompas] = useState(type === "all" ? JSON.parse(window.localStorage.getItem("allstoragedOompaLoompas")) || [] : []);
-
   const [oompasToFilter, setOompasToFilter] = useState(JSON.parse(window.localStorage.getItem("allstoragedOompaLoompas")) || []);
  
 
@@ -25,7 +24,10 @@ const customApi=api+page
 
     if (oompas.length === 0 || moment(actualDateStorage).isAfter(refreshingDateStorage)) {
       if (moment(actualDateStorage).isAfter(refreshingDateStorage)) {
-        localStorage.clear();
+        localStorage.removeItem(type+"clearDate");
+        localStorage.removeItem(type+"actualdate");
+        localStorage.removeItem(page+"storagedOompaLoompa");
+     
         } 
 
         if(type === "all"){
@@ -45,6 +47,9 @@ const customApi=api+page
 
 
     }
+
+
+
 
 }
  
