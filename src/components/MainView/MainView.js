@@ -23,14 +23,14 @@ const MainView = () => {
   useEffect(() =>{
 if(isNextPage)  {
   setPage(page => page + 1) 
-  console.log(page)
+
 }},[isNextPage])
 
 
 
 useEffect(() =>{
   window.localStorage.setItem(type + "storagedOompaLoompas", JSON.stringify(oompas));
-},[oompas])
+},[])
 
   const searchValue = (e) => {
     let searchBar = e.target.value;
@@ -58,6 +58,7 @@ useEffect(() =>{
       ) {
         return loompa;
       }
+      return false;
     });
     setOompas(loompaResult);
   };

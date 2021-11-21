@@ -1,5 +1,5 @@
 import { Redirect, Switch } from "react-router";
-import { Route, Link, BrowserRouter } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import MainView from 'components/MainView/MainView';
 import TopBar from 'components/Navigation/TopBar'
 import { OompaLoompaDetail } from "components/MainView/components/OompaLoompaDetail";

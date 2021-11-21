@@ -9,7 +9,6 @@ export const OompaLoompaDetail = () => {
   const api ="https://2q2woep105.execute-api.eu-west-1.amazonaws.com/napptilus/oompa-loompas/";
   let [oompa] = useGetOompas(id, type, api);
   const [storagedOompaLoompa, setStoragedOompaLoompa] = useState(JSON.parse(window.localStorage.getItem(id + "storagedOompaLoompa")) || [])
-  const description= oompa.description
 
 
   useEffect(() => { 

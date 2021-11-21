@@ -25,7 +25,7 @@ export const useNextPage = (elementRef) =>{
      
 return [isNextPage]
 
-
+ // eslint-disable-next-line react-hooks/exhaustive-deps
     },[isNextPage])
 
   
