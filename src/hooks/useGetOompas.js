@@ -13,16 +13,16 @@ const customApi=api+id
  
   useEffect(() => {
     getOompas();
-  }, [oompas]);
+  }, []);
 
   const getOompas = async () => {
     var actualDate = moment().format("LLL");
     var clearDate = moment().add(1, "day").format("LLL");
     window.localStorage.setItem(type+"actualDate", JSON.stringify(actualDate));
     const response = await axios.get(customApi);
-    setOompasToFilter(response.data.results);
+    setOompasToFilter(oompas);
 
-    
+
     if (oompas.length === 0 || moment(actualDateStorage).isAfter(refreshingDateStorage)) {
       if (moment(actualDateStorage).isAfter(refreshingDateStorage)) {
         localStorage.removeItem(type+"clearDate");
