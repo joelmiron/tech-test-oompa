@@ -18,7 +18,7 @@ Those items are stored in client side once fetched, then every twenty-four hours
 
 ##### DEVELOPMENT 📝
 - On render list and detail items i used a custom hook that checks if Oompa Loompa local storage exists,
-in this case returns data from Local Storage with the actual date, if doesnt exists,  the data is fetched
+in this case returns data from Local Storage with the actual date, if doesn't exists,  the data is fetched
 from the Api and sets refresh date time and actual date, if time's up, data in local storaged is reseted.
 - For optimize images i used react.Lazy() and intersection observer to use image only when it is on the view(only in mobile)
 
