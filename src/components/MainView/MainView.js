@@ -23,12 +23,14 @@ const MainView = () => {
     }
   }, [isNextPage]);
 
+  //OnChange evento from searchBar
   const searchValue = (e) => {
     let searchBar = e.target.value;
     setSearch(searchBar);
     loompaSearch(searchBar);
   };
 
+  //search bar filter function
   const loompaSearch = (searchBar) => {
     var loompaResult = oompasToFilter.filter((loompa) => {
       if (

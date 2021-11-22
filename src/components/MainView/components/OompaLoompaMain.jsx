@@ -7,7 +7,11 @@ const OompaLoompaMain = ({ id, image, firstName, lastName,gender,profession}) =>
 const elementRef = useRef()
 const history=useHistory()
 
- 
+const loompaDetails = (oompaLoompa) =>{
+  history.push("/"+ oompaLoompa)
+  }
+  
+ // This intersection observer checks if the image does not load if is not on the view to make
 useEffect(() =>{
 const viewImage = (entries) =>{
   entries.forEach((entry) =>{
@@ -17,27 +21,17 @@ const viewImage = (entries) =>{
 
       element.setAttribute('src', imageSrc)
     }
-  }) 
-
-}
+  })}
+  
   const observer = new IntersectionObserver(viewImage,{threshold:1})
   observer.observe(elementRef.current)
 },[])
 
 
-const loompaDetails = (oompaLoompa) =>{
-history.push("/"+ oompaLoompa)
-}
-
-
- 
-
 return(
 
  <div className="oompaLoompaContent"  onClick={() => loompaDetails(id)}>
-    
-  
- <img alt="OompaImage" className="imagesOompaLoompas" ref={elementRef}  data-src={image} />
+    <img alt="OompaImage" className="imagesOompaLoompas" ref={elementRef}  data-src={image} />
    <div>
 <div className="name">{firstName} {lastName}</div>
 <div className="gender">{gender === "F" ? "Female" : "Male"}</div>
