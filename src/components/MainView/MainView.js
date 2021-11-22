@@ -19,7 +19,7 @@ const MainView = () => {
       setPage(page + 1);
       console.log(isNextPage)
     }
-    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isNextPage]);
 
   

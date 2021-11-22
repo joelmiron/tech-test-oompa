@@ -31,7 +31,7 @@ const viewImage = (entries) =>{
 return(
 
  <div className="oompaLoompaContent"  onClick={() => loompaDetails(id)}>
-    <img alt="OompaImage" className="imagesOompaLoompas" ref={elementRef}  data-src={image} />
+    <img alt="OompaImage" loading="lazy" className="imagesOompaLoompas" ref={elementRef}  data-src={image} />
    <div>
 <div className="name">{firstName} {lastName}</div>
 <div className="gender">{gender === "F" ? "Female" : "Male"}</div>
