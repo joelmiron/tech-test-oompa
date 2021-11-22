@@ -12,8 +12,8 @@ Those items are stored in client side once fetched, then every twenty-four hours
 
 ##### RUN THIS PROJECT 🚀
 
-npm install
-npm start 
+-npm install
+-npm start 
 
 
 ##### DEVELOPMENT 📝
