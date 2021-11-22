@@ -2,24 +2,24 @@ import { useState } from "react";
 import { useEffect } from "react/cjs/react.development";
 
 export const useNextPage = (elementRef) => {
-  const [isNextPage, setIsNextPage] = useState(false);
+  const [isNextPage, setIsNextPage] = useState(0);
 
   useEffect(() => {
     const observeNextPage = (entries) => {
       const nextPage = entries[0];
       if (nextPage.isIntersecting) {
-        console.log("intersection");
-        setIsNextPage(true);
+        setIsNextPage(isNextPage => isNextPage  + 1);
+        console.log(isNextPage)
       }
     };
 
     const observer = new IntersectionObserver(observeNextPage, {
-      rootMargin: "0px",
+      rootMargin: "100px",
     });
     observer.observe(elementRef.current);
-
-    return [isNextPage];
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isNextPage]);
+  }, []);
+
+return isNextPage
+
 };

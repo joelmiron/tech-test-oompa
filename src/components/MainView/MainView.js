@@ -3,60 +3,30 @@ import { Suspense } from "react";
 import { useGetOompas } from "hooks/useGetOompas";
 import { useNextPage } from "hooks/useNextPage";
 import React, { useEffect, useRef, useState } from "react";
-const OompaLoompaMain = React.lazy(() =>
-  import("./components/OompaLoompaMain")
-);
+const OompaLoompaMain = React.lazy(() =>import("./components/OompaLoompaMain"));
 
 const MainView = () => {
   const type = "all";
-  const api =
-    "https://2q2woep105.execute-api.eu-west-1.amazonaws.com/napptilus/oompa-loompas?page=";
+  const api = "https://2q2woep105.execute-api.eu-west-1.amazonaws.com/napptilus/oompa-loompas?page=";
   const [page, setPage] = useState(1);
-  const [search, setSearch] = useState("");
   const [oompas, setOompas, oompasToFilter] = useGetOompas(page, type, api);
   const elementRef = useRef();
+  //custom hook to use Intersection Observer when user scroll to bottom of the page
   const isNextPage = useNextPage(elementRef);
 
   useEffect(() => {
     if (isNextPage) {
-      setPage((page) => page + 1);
+      setPage(page + 1);
+      console.log(isNextPage)
     }
+    
   }, [isNextPage]);
 
-  //OnChange evento from searchBar
-  const searchValue = (e) => {
-    let searchBar = e.target.value;
-    setSearch(searchBar);
-    loompaSearch(searchBar);
-  };
-
-  //search bar filter function
-  const loompaSearch = (searchBar) => {
-    var loompaResult = oompasToFilter.filter((loompa) => {
-      if (
-        loompa.first_name
-          .toString()
-          .toLowerCase()
-          .includes(searchBar.toLowerCase()) ||
-        loompa.last_name
-          .toString()
-          .toLowerCase()
-          .includes(searchBar.toLowerCase()) ||
-        loompa.profession
-          .toString()
-          .toLowerCase()
-          .includes(searchBar.toLowerCase())
-      ) {
-        return loompa;
-      }
-      return false;
-    });
-    setOompas(loompaResult);
-  };
+  
 
   return (
     <div className="MainContainer">
-      <SearchBar search={search} searchValue={searchValue} />
+      <SearchBar setOompas={setOompas} oompasToFilter={oompasToFilter}  />
 
       <div className="titleMain">
         <div className="title">Find your Oompa Loompa</div>

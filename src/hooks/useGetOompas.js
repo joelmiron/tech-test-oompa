@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 const axios = require("axios");
 const moment = require("moment");
 
-
 //<--------------this custom hook validates if 24h update is needed, updates times in localStorage
 // and  returns fetch object from api or localStorage content if exists 
 export const useGetOompas = (id, type,api) => {
@@ -24,7 +23,6 @@ export const useGetOompas = (id, type,api) => {
     window.localStorage.setItem(type+"actualDate", JSON.stringify(actualDate));
     const response = await axios.get(customApi);
     setOompasToFilter(oompas);
-
     //data can exist but refresh time is up, then need to clear storage or data is empty, then fill with the api fetch
     if (oompas.length === 0 || moment(actualDateStorage).isAfter(refreshingDateStorage)) {
       //clear storage if time's up
@@ -41,7 +39,6 @@ export const useGetOompas = (id, type,api) => {
         }else{
           setOompas(response.data);
         }
-
         //set to local Storage actual date and actual date + 24h
         window.localStorage.setItem(type+"actualDate", JSON.stringify(actualDate));
         window.localStorage.setItem(type+"clearDate", JSON.stringify(clearDate));  

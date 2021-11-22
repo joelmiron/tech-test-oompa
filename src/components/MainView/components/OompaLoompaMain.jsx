@@ -11,7 +11,7 @@ const loompaDetails = (oompaLoompa) =>{
   history.push("/"+ oompaLoompa)
   }
   
- // This intersection observer checks if the image does not load if is not on the view to make
+ // This intersection observer loops images and checks if the image is visible on the view to load it
 useEffect(() =>{
 const viewImage = (entries) =>{
   entries.forEach((entry) =>{
