@@ -16,18 +16,32 @@ export const useGetOompas = (id, type,api) => {
   let actualDate = moment().format("LLL");
   let clearDate = moment().add(1, "day").format("LLL");
  const [idPage, setIdPage] = useState(JSON.parse(window.localStorage.getItem("actualPage")) ?  JSON.parse(window.localStorage.getItem("actualPage")) + 1 : 1)
+//  const [currentPage ,setCurrentPage] = useState()
+//  const [totalPages ,setTotalPages] = useState()
+
+
+ 
   useEffect(() => {
     getOompas();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
- 
-    const getOompas = async () => {
-    window.localStorage.setItem(type+"actualDate", JSON.stringify(actualDate));
 
+
+  useEffect(()=>{
+
+  },[])
+
+
+    const getOompas = async () => {
 if(idPage > actualPage && type ==="all" ) {
   window.localStorage.setItem("actualPage", JSON.stringify(idPage));
+  const apiUpdated = api+idPage
+  const response = await axios.get(apiUpdated);
+  //  setCurrentPage(response.current)
+  //  setTotalPages(response.total)
+
   setIdPage((idPage) => idPage + 1)
-  const response = await axios.get(customApi);
+
   setOompas((prevOompas) => prevOompas.concat(response.data.results) );
   setOompasToFilter((oompas) => oompas.concat(response.data.results));
   window.localStorage.setItem(type+"actualDate", JSON.stringify(actualDate));
