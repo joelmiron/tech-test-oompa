@@ -1,7 +1,7 @@
 import iconSearch from "assets/img/ic_search.png";
 import { useState } from "react/cjs/react.development";
 
-const SearchBar = ({ setOompas, oompasToFilter }) => {
+const SearchBar = ({ oompas, oompasToFilter }) => {
   const [search, setSearch] = useState("");
 
   //OnChange evento from searchBar
@@ -32,7 +32,7 @@ const SearchBar = ({ setOompas, oompasToFilter }) => {
       }
       return false;
     });
-    setOompas(loompaResult);
+    oompas(loompaResult);
   };
 
   return (

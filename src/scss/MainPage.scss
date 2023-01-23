@@ -24,9 +24,10 @@
   flex-wrap: wrap;
   gap: 30px 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   min-height: 100vh;
-  div {
+  
+  .oompaLoompaItem{
     flex: 0 31%;
   }
 }
