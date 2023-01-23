@@ -13,7 +13,7 @@ const SearchBar = ({ setOompas, oompasToFilter }) => {
 
   //search bar filter function
   const loompaSearch = (searchBar) => {
-    var loompaResult = oompasToFilter.filter((loompa) => {
+    let loompaResult = oompasToFilter.filter((loompa) => {
       if (
         loompa.first_name
           .toString()

@@ -22,12 +22,12 @@ export const useGetOompas = (id, type,api) => {
  
     const getOompas = async () => {
     window.localStorage.setItem(type+"actualDate", JSON.stringify(actualDate));
-    const response = await axios.get(customApi);
-    setOompasToFilter(oompas);
+  
+  
 
     //data can exists but refresh time is up, then need to clear storage or if data is empty, then fill oompas with the api fetch
     if (oompas.length === 0 || moment(actualDateStorage).isAfter(refreshingDateStorage)) {
-
+      const response = await axios.get(customApi);
       //clear storage if time's up
       if (moment(actualDateStorage).isAfter(refreshingDateStorage)) {
         localStorage.removeItem(type+"clearDate");
@@ -37,7 +37,9 @@ export const useGetOompas = (id, type,api) => {
 
         //data type from all Oompa Loompas and single Oompla Loompa is different, returns the proper one
         if(type === "all"){
+        
           setOompas(response.data.results);
+          setOompasToFilter(response.data.results);
           window.localStorage.setItem(type + "storagedOompaLoompas", JSON.stringify(response.data.results));
         }else{
           setOompas(response.data);

@@ -7,9 +7,10 @@ const OompaLoompaMain = React.lazy(() =>import("./components/OompaLoompaMain"));
 
 const MainView = () => {
   const type = "all";
+  
   const api = "https://2q2woep105.execute-api.eu-west-1.amazonaws.com/napptilus/oompa-loompas?page=";
   const [page, setPage] = useState(1);
-  const [oompas, setOompas, oompasToFilter] = useGetOompas(page, type, api);
+  const [oompas, setOompas,oompasToFilter] = useGetOompas(page, type, api);
   const elementRef = useRef();
   //custom hook to use Intersection Observer when user scroll to bottom of the page
   const isNextPage = useNextPage(elementRef);
@@ -26,7 +27,7 @@ const MainView = () => {
 
   return (
     <div className="MainContainer">
-      <SearchBar setOompas={setOompas} oompasToFilter={oompasToFilter}  />
+       <SearchBar setOompas={setOompas} oompasToFilter={oompasToFilter}  />
 
       <div className="titleMain">
         <div className="title">Find your Oompa Loompa</div>

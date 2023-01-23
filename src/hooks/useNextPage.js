@@ -9,7 +9,7 @@ export const useNextPage = (elementRef) => {
       const nextPage = entries[0];
       if (nextPage.isIntersecting) {
         setIsNextPage(isNextPage => isNextPage  + 1);
-        console.log(isNextPage)
+        
       }
     };
 
